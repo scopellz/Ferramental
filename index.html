@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciamento de Ferramentas</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.4/xlsx.full.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  </head>
+<body>
+  <header>
+    <h1>Gerenciamento de Ferramentas</h1>
+    <div id="tabs">
+      <button class="tablinks" onclick="openTab(event, 'supplier-registration')">Cadastro Fornecedores</button>
+      <button class="tablinks" onclick="openTab(event, 'add')">Cadastro Ferramenta</button>
+      <button class="tablinks" onclick="openTab(event, 'movement')">Registrador de Movimentação</button>
+      <button class="tablinks" onclick="openTab(event, 'supplier-balance')">Saldo Fornecedor</button>
+      <button class="tablinks" onclick="openTab(event, 'movements')">Movimentos Registrados</button>
+      <button class="tablinks" onclick="openTab(event, 'settings')">Backup</button>
+    </div>
+  </header>
+  <main id="main-content">
+ <div id="add" class="tabcontent">
+  <form id="add-tool-form" onsubmit="addTool(event)">
+    <h2>Cadastrar Ferramenta</h2>
+    <label for="tool-name">Ferramenta:</label>
+    <input type="text" id="tool-name" required>
+    <label for="quantity">Quantidade:</label>
+    <input type="number" id="quantity" required>
+    <button type="submit">Adicionar</button>
+  </form>
+  <h2>Ferramentas Cadastradas</h2>
+  <table id="tool-table">
+    <thead>
+      <tr>
+        <th>Ferramenta</th>
+        <th>Quantidade</th>
+        <th>Data de Cadastro</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody id="tool-list"></tbody>
+  </table>
+</div>
+<div id="movement" class="tabcontent">
+    <form id="movement-form" onsubmit="registerMovement(event)">
+        <h2>Registrador Movimentação</h2>
+        <label for="tool-id">Ferramenta:</label>
+        <select id="tool-id" required></select>
+        <span id="tool-quantity"></span>
+        <label for="supplier">Fornecedor:</label>
+        <select id="supplier" required></select>
+        <label for="requester">Solicitante:</label> 
+        <input type="text" id="requester" required> 
+        <label for="invoice">Nota Fiscal:</label> 
+        <input type="text" id="nft" required> <!-- Novo campo adicionado -->
+        <label for="movement-type">Tipo de Movimentação:</label>
+        <select id="movement-type" required>
+            <option value="saída">Saída</option>
+            <option value="entrada">Entrada</option>
+        </select>
+        <label for="movement-quantity">Quantidade:</label>
+        <input type="number" id="movement-quantity" required>
+        <button type="submit">Registrar</button>
+    </form>
+</div>
+   <div id="movements" class="tabcontent">
+  <h2>Movimentos Registrados</h2>
+  <div id="movement-filters" class="filters">
+    <div class="field-group">
+      <label for="filter-date">Data:</label>
+      <input type="text" id="filter-date" placeholder="Data (DD/MM/YYYY)">
+    </div>
+    <div class="field-group">
+      <label for="filter-tool">Ferramenta:</label>
+      <input type="text" id="filter-tool">
+    </div>
+    <div class="field-group">
+      <label for="filter-requester">Solicitante:</label>
+      <input type="text" id="filter-requester">
+    </div>
+    <div class="field-group">
+      <label for="filter-nft">NFT:</label>
+      <input type="text" id="filter-nft">
+    </div>
+    <div class="field-group">
+      <label for="filter-supplier">Fornecedor:</label>
+      <input type="text" id="filter-supplier">
+    </div>
+    <div class="field-group">
+      <label for="filter-type">Tipo:</label>
+      <select id="filter-type">
+        <option value="">Todos</option>
+        <option value="saída">Saída</option>
+        <option value="entrada">Entrada</option>
+      </select>
+    </div>
+    <div class="buttons-group">
+      <button class="filter-button" onclick="filterMovements()">Filtrar</button>
+      <button class="export-button" onclick="exportToExcel()">Exportar</button>
+    </div>
+  </div>
+  <table id="movement-table" class="tool-table">
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Ferramenta</th>
+        <th>Solicitante</th>
+        <th>NFT</th>
+        <th>Quantidade</th>
+        <th>Fornecedor</th>
+        <th>Tipo</th>
+      </tr>
+    </thead>
+    <tbody id="movement-list"></tbody>
+  </table>
+</div>
+
+
+<div id="supplier-balance" class="tabcontent">
+  <h2>Saldo Fornecedor</h2>
+  <label for="select-supplier">Fornecedor:</label>
+  <select id="select-supplier" onchange="loadSupplierBalance()">
+  </select>
+  <table id="supplier-balance-table" class="tool-table">
+    <thead>
+      <tr>
+        <th>Ferramenta</th>
+        <th>Saldo</th>
+      </tr>
+    </thead>
+    <tbody id="supplier-balance-body"></tbody>
+  </table>
+</div>
+<div id="supplier-registration" class="tabcontent">
+  <form id="supplier-registration-form" onsubmit="registerSupplier(event)">
+    <h2>Cadastro de Fornecedores</h2>
+    <label for="supplier-name">Nome do Fornecedor:</label>
+    <input type="text" id="supplier-name" required>
+    <button type="submit">Cadastro</button>
+  </form>
+  <h2>Fornecedores Cadastrados</h2>
+  <table id="supplier-table" class="tool-table"> 
+    <thead>
+      <tr>
+        <th>Fornecedor</th>
+        <th>Data de Cadastro</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody id="supplier-list"></tbody>
+  </table>
+</div>
+    <div id="settings" class="tabcontent">
+      <h2>Backup</h2>
+      <h3>Exportar Dados</h3>
+      <button class="export-button" onclick="exportData()">Exportar</button>
+      <h3>Importar Dados</h3>
+      <label for="file-input" class="file-label">Escolher Arquivo</label>
+      <input type="file" id="file-input" accept=".json" onchange="importData(event)">
+   <div id="movements" class="tabcontent">
+  <h2>Movimentações Registradas</h2>
+  <div id="movement-filters">
+    <label for="filter-tool">Ferramenta:</label>
+    <input type="text" id="filter-date" placeholder="Data (DD/MM/YYYY)">
+    <label for="filter-date">Data:</label>
+    <input type="date" id="filter-date">
+ <label for="filter-requester">Solicitante:</label>
+  <input type="text" id="filter-requester">
+  <label for="filter-nft">NFT:</label>
+  <input type="text" id="filter-nft">
+ <label for="filter-supplier">Fornecedor:</label>
+  <input type="text" id="filter-supplier">
+<label for="filter-type">Tipo:</label>
+    <select id="filter-type">
+      <option value="">Todos</option>
+      <option value="saída">Saída</option>
+      <option value="entrada">Entrada</option>
+    </select>
+    <button onclick="filterMovements()">Filtrar</button>
+  </div>
+  <ul id="filtered-movement-list"></ul>
+</div>
+  </main>
+  <script src="script.js"></script>
+  <script>
