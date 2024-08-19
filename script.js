@@ -765,4 +765,52 @@ function displayFilteredMovementList(filteredMovements) {
   }
 }
 
+document.getElementById('tool-search').addEventListener('input', function() {
+    const toolCode = this.value.trim().toLowerCase(); 
+    const supplierBalanceTable = document.getElementById('supplier-balance-body');
+    
+ 
+    if (toolCode === '') {
+        supplierBalanceTable.innerHTML = '';
+        return;
+    }
+
+    const filteredMovements = movements.filter(movement => movement.toolName.toLowerCase().includes(toolCode));
+
+    supplierBalanceTable.innerHTML = '';
+
+    if (filteredMovements.length > 0) {
+        const groupedMovements = {};
+
+        filteredMovements.forEach(movement => {
+            const key = movement.supplier;
+            if (!groupedMovements[key]) {
+                groupedMovements[key] = {
+                    supplier: movement.supplier,
+                    totalQuantity: 0
+                };
+            }
+         
+            if (movement.type === 'entrada') {
+                groupedMovements[key].totalQuantity += Math.abs(movement.quantity);
+            } else {
+                groupedMovements[key].totalQuantity -= Math.abs(movement.quantity);
+            }
+        });
+
+        Object.values(groupedMovements).forEach(movement => {
+            if (movement.totalQuantity !== 0) {
+                const row = supplierBalanceTable.insertRow();
+                const cellSupplierName = row.insertCell(0);
+                const cellTotalQuantity = row.insertCell(1);
+
+                cellSupplierName.textContent = movement.supplier;
+                cellTotalQuantity.textContent = Math.abs(movement.totalQuantity);
+            }
+        });
+    } else {
+        supplierBalanceTable.innerHTML = '<tr><td colspan="2">Nenhum fornecedor encontrado para essa ferramenta.</td></tr>';
+    }
+});
+
 window.onload = initialize;
