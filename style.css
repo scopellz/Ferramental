@@ -1,11 +1,9 @@
-/* Estilos gerais */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
 
-/* Cabeçalho */
 header {
   background-color: #333;
   color: white;
@@ -18,7 +16,6 @@ header h1 {
   margin: 0;
 }
 
-/* Estilos das abas */
 #tabs {
   margin-top: 20px;
 }
@@ -43,7 +40,6 @@ header h1 {
   padding: 20px;
 }
 
-/* Estilos para a tabela de ferramentas */
 #tool-table {
   width: 100%;
   border-collapse: collapse;
@@ -64,7 +60,6 @@ header h1 {
   background-color: #f2f2f2;
 }
 
-/* Estilos para a tabela de fornecedores */
 .tool-table {
   width: 100%;
   border-collapse: collapse;
@@ -85,7 +80,6 @@ header h1 {
   background-color: #f2f2f2;
 }
 
-/* Estilos para os formulários */
 form {
   margin-bottom: 20px;
 }
@@ -121,7 +115,76 @@ form button:hover {
   background-color: #555;
 }
 
-/* Estilos para a página "Saldo Fornecedor" e para o título "Fornecedor" acima dos botões dos fornecedores */
+form {
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+form input[type="email"],
+form input[type="number"],
+form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+form button {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #555;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+form input[type="tel"],
+form input[type="number"],
+form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+form button {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #555;
+}
+
 .tabcontent,
 .tabcontent h2 {
   background-color: #f9f9f9;
@@ -212,7 +275,6 @@ form button:hover {
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilos para o campo de seleção na aba "Saldo Fornecedor" */
 #select-supplier {
   width: calc(100% - 20px);
   padding: 10px;
@@ -229,7 +291,6 @@ form button:hover {
   box-shadow: 0 0 5px #333;
 }
 
-/* Estilizando a seta do campo de seleção */
 #select-supplier::-ms-expand {
   display: none;
 }
@@ -243,7 +304,6 @@ form button:hover {
   pointer-events: none;
 }
 
-/* Estilos para os botões "Exportar" e "Escolher arquivo" na aba "Backup" */
 #settings h3 {
   margin-top: 20px;
   margin-bottom: 10px;
@@ -269,12 +329,10 @@ form button:hover {
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Esconder o botão de arquivo padrão */
 #file-input {
   display: none;
 }
 
-/* Estilos específicos para o botão "Cadastro" na aba "Cadastro de Fornecedores" */
 #tabs #supplier-registration .tablinks {
   background-color: #333 !important;
   transition: background-color 0.3s ease;
@@ -294,7 +352,6 @@ form button:hover {
   background-color: #555 !important;
 }
 
-/* Estilos específicos para os inputs na aba "Cadastro de Fornecedores" */
 #tabs #supplier-registration input[type="text"] {
   border: 1px solid #ddd;
   padding: 10px;
@@ -316,7 +373,6 @@ form button:hover {
   background-color: #555;
 }
 
-/* Estilos para a aba "Movimentos Registrados" */
 #movimentos-registrados .tabcontent {
   background-color: #f9f9f9;
   padding: 20px;
@@ -389,16 +445,14 @@ form button:hover {
   border-bottom-right-radius: 8px;
 }
 
-/* Ajustando cores das abas */
 #tabs .tablinks {
-  background-color: #000; /* Preto */
+  background-color: #000; 
 }
 
 #tabs .tablinks.active {
-  background-color: #333; /* Cinza escuro para aba ativa */
+  background-color: #333; 
 }
 
-/* Estilo da aba Movimentos Registrados */
 #movements {
   background-color: #f9f9f9;
   padding: 20px;
@@ -406,32 +460,30 @@ form button:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo dos campos */
 #movements .field-group {
-  margin-bottom: 5px; /* Redução do espaço vertical */
+  margin-bottom: 5px;
 }
 
 #movements .field-group label {
   display: block;
   font-weight: bold;
-  margin-bottom: 2px; /* Redução do espaço abaixo do label */
+  margin-bottom: 2px; 
   color: #333;
 }
 
 #movements .field-group input[type="text"],
 #movements .field-group select {
-  width: 100%; /* Mantém a largura total */
-  padding: 6px; /* Ajuste do padding */
+  width: 100%; 
+  padding: 6px; 
   margin-top: 2px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
-/* Estilo dos botões */
 #movements .buttons-group {
-  margin-top: 10px; /* Espaço acima dos botões */
-  margin-bottom: 20px; /* Espaço abaixo dos botões */
+  margin-top: 10px; 
+  margin-bottom: 20px; 
 }
 
 #movements .buttons-group button {
@@ -449,7 +501,6 @@ form button:hover {
   background-color: #555;
 }
 
-/* Estilo da tabela */
 #movement-table {
   width: 100%;
   border-collapse: collapse;
@@ -459,13 +510,11 @@ form button:hover {
 #movement-table td {
   padding: 10px;
   border: 1px solid #ccc;
-  text-align: center; /* Centraliza o texto nas células */
-  vertical-align: middle; /* Centraliza verticalmente */
+  text-align: center; 
+  vertical-align: middle; 
 }
 
 #movement-table th {
   background-color: #f4f4f4;
   font-weight: bold;
 }
-
-
