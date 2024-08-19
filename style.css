@@ -291,6 +291,22 @@ form button:hover {
   box-shadow: 0 0 5px #333;
 }
 
+#tool-search {
+  width: calc(100% - 40px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 16px;
+}
+
+#tool-search:focus {
+  outline: none;
+  border-color: #333;
+  box-shadow: 0 0 5px #333;
+}
+
 #select-supplier::-ms-expand {
   display: none;
 }
