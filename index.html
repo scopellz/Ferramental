@@ -22,12 +22,12 @@
   <main id="main-content">
  <div id="add" class="tabcontent">
   <form id="add-tool-form" onsubmit="addTool(event)">
-    <h2>Cadastrar Ferramenta</h2>
+    <h2>Cadastro Ferramentas</h2>
     <label for="tool-name">Ferramenta:</label>
     <input type="text" id="tool-name" required>
     <label for="quantity">Quantidade:</label>
     <input type="number" id="quantity" required>
-    <button type="submit">Adicionar</button>
+    <button type="submit">Cadastrar</button>
   </form>
   <h2>Ferramentas Cadastradas</h2>
   <table id="tool-table">
@@ -53,7 +53,7 @@
         <label for="requester">Solicitante:</label> 
         <input type="text" id="requester" required> 
         <label for="invoice">Nota Fiscal:</label> 
-        <input type="text" id="nft" required> <!-- Novo campo adicionado -->
+        <input type="text" id="nft" required> 
         <label for="movement-type">Tipo de Movimentação:</label>
         <select id="movement-type" required>
             <option value="saída">Saída</option>
@@ -115,8 +115,6 @@
     <tbody id="movement-list"></tbody>
   </table>
 </div>
-
-
 <div id="supplier-balance" class="tabcontent">
   <h2>Saldo Fornecedor</h2>
   <label for="select-supplier">Fornecedor:</label>
@@ -134,10 +132,14 @@
 </div>
 <div id="supplier-registration" class="tabcontent">
   <form id="supplier-registration-form" onsubmit="registerSupplier(event)">
-    <h2>Cadastro de Fornecedores</h2>
-    <label for="supplier-name">Nome do Fornecedor:</label>
+    <h2>Cadastro Fornecedores</h2>
+    <label for="supplier-name">Fornecedor:</label>
     <input type="text" id="supplier-name" required>
-    <button type="submit">Cadastro</button>
+   <label for="supplier-email">E-mail:</label>
+   <input type="email" id="supplier-email" required>
+   <label for="supplier-phone">Telefone:</label>
+   <input type="tel" id="supplier-phone" required>
+    <button type="submit">Cadastrar</button>
   </form>
   <h2>Fornecedores Cadastrados</h2>
   <table id="supplier-table" class="tool-table"> 
